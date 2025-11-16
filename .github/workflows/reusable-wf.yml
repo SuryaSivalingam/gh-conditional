@@ -7,9 +7,19 @@ on:
         description: Name of the artifact built
         required: false
         default: npm
+    # secrets:
+    #   imp-secret:
+    #     required: false
+    outputs:
+      result:
+        description: "Printing job status"
+        value: ${{ jobs.deploy.outputs.job-status }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      job-status: ${{ steps.set-output.outputs.status }}
+      
     steps:
       - name: Downloading the artifact
         uses: actions/download-artifact@v5
@@ -20,3 +30,6 @@ jobs:
           echo "Deployment started"
           sleep 10
           echo "Deployment completed"
+      - name: Output values
+        id: set-output
+        run: echo "status=success" > $GITHUB_OUTPUT

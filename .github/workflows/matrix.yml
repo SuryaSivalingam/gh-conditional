@@ -39,3 +39,12 @@ jobs:
     needs: [ deploy ]
     with:
       artifact: npm-artifact
+    # secrets:
+    #   imp-secret: ${{ secrets.imp-secret }}
+  
+  print-reusable-result:
+    needs: [reusable-job]
+    runs-on: ubuntu-latest
+    steps:
+      run: |
+       echo "${{ needs.reusable-job.outputs.result }}"
