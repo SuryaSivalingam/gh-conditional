@@ -1,0 +1,23 @@
+name: gha for matrix
+on: push
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        node-versions: [12,14,16]
+        os: [ubuntu-latest,windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Install Node js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-versions }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run test
+      - name: Building project
+        run: npm run build
