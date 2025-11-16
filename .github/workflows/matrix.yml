@@ -4,6 +4,7 @@ jobs:
   deploy:
     continue-on-error: true
     strategy:
+      fail-fast: true
       matrix:
         node-versions: [12,14,16]
         os: [ubuntu-latest,windows-latest]
@@ -28,5 +29,6 @@ jobs:
         run: npm run test
       - name: Building app
         run: npm run build
-      - name: Deploying the app
-        uses: ./.github/workflows/reusable-wf.yml
+  reusable-job:
+    uses: ./.github/workflows/reusable-wf.yml
+    runs-on: ubuntu-latest
