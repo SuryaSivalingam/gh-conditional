@@ -12,7 +12,7 @@ jobs:
             os: ubuntu-latest
         exclude:
           - node-versions: 12
-            os: windows-latest
+            # os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       
@@ -26,5 +26,7 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test
-      - name: Building project
+      - name: Building app
         run: npm run build
+      - name: Deploying the app
+        uses: ./.github/workflows/reusable-wf.yml

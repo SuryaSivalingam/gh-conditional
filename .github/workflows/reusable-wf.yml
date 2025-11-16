@@ -1,0 +1,11 @@
+name: Reusable workflow
+on: workflow_call
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+       - name: Deploying the package
+         run: |
+           echo "Deploying started"
+           sleep 10
+           echo "Deployment completed"
