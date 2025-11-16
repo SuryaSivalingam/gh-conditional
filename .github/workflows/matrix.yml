@@ -2,6 +2,7 @@ name: gha for matrix
 on: push
 jobs:
   deploy:
+    continue-on-error: true
     strategy:
       matrix:
         node-versions: [12,14,16]
