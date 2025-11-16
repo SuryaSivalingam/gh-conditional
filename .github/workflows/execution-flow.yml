@@ -83,6 +83,6 @@ jobs:
     steps:
       - name: Output information
         run: |
-          echo "Job completed with $ {{ job.status }}"
+          echo "Job completed with ${{ job.status }}"
           echo "Something went wrong"
-          echo "$ {{ toJSON(github)}}"
+          echo "${{ toJSON(github)}}"
