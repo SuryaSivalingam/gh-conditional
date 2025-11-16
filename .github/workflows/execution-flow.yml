@@ -84,5 +84,6 @@ jobs:
       - name: Output information
         run: |
           echo "Job completed with ${{ job.status }}"
+          echo "Job completed with ${{ gothub.action_status }}"
           echo "Something went wrong"
           echo "${{ toJSON(github)}}"
