@@ -37,3 +37,5 @@ jobs:
   reusable-job:
     uses: ./.github/workflows/reusable-wf.yml
     needs: [ deploy ]
+    with:
+      artifact: npm-artifact
