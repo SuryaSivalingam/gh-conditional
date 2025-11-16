@@ -1,11 +1,22 @@
 name: Reusable workflow
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      artifact:
+        type: string
+        description: Name of the artifact built
+        required: false
+        default: npm
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-       - name: Deploying the package
-         run: |
-           echo "Deploying started"
-           sleep 10
-           echo "Deployment completed"
+      - name: Downloading the artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ inputs.artifact }}
+      - name: Deploying the package
+        run: |
+          echo "Deployment started"
+          sleep 10
+          echo "Deployment completed"
